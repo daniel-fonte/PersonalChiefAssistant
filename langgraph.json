@@ -1,0 +1,7 @@
+{
+    "dependencies": ["."],
+    "graphs": {
+        "restaurant": "./agents/personal_chief_agent.py:STUDIO_AGENT"
+    },
+    "env": ".env"
+}
