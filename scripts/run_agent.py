@@ -7,12 +7,12 @@ load_dotenv()
 from langchain.mcp import MCPAdapter
 from langchain_core.messages import HumanMessage
 
-from agents.personal_chief_agent import initialize_agent
+from app.agent.personal_chief import initialize_agent
 
 from langchain.messages import AIMessageChunk, AIMessage, AnyMessage, ToolMessage
-from mcp_clients.connections import MCP_GROUP
-from tools.tavily_tools import create_controlled_tavily_tool
-from tools.tinyFish_tools import create_controlled_tinifish
+from app.mcp.connections import MCP_GROUP
+from app.tools.tavily import create_controlled_tavily_tool
+from app.tools.tinyfish import create_controlled_tinifish
 
 async def main():
     async with MCPAdapter(MCP_GROUP) as adapter:
@@ -33,16 +33,7 @@ async def main():
 
         tavily_search_controlled = create_controlled_tavily_tool(originalSearchTavilyTool, 5)
         tinifish_fetch_content_controlled = create_controlled_tinifish(originalTinifishFetchContent)
-
-        # mcp_tools = [
-        #     tavily_search_controlled
-        #     if tool.name == "tavily_tavily_search"
-        #     else tinifish_fetch_content_controlled
-        #     if tool.name == "tinyFish_fetch_content"
-        #     else tool
-        #     for tool in mcp_tools
-        # ]
-
+        
         mcp_tools = [
             tavily_search_controlled,
             tinifish_fetch_content_controlled

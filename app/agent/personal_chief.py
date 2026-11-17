@@ -2,8 +2,8 @@ from langchain_ollama import ChatOllama
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain.agents import create_agent
 from langchain.agents.middleware import SummarizationMiddleware, LLMToolSelectorMiddleware
-from tools.tavily_tools import SearchState, tavily_state
-from prompts.personal_chief_prompts import SYSTEM_PROMPT, SUMMARY_PROMPT, TOOL_SELECTION_PROMPT
+from app.tools.tavily import SearchState, tavily_state
+from app.prompts.personal_chief import SYSTEM_PROMPT, SUMMARY_PROMPT, TOOL_SELECTION_PROMPT
 
 from langchain_groq import ChatGroq
 
